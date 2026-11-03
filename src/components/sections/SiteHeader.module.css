@@ -1313,3 +1313,13 @@
     transition: none !important;
   }
 }
+
+/* Clone-only: shorten the highlight label on tablets (original's label is shorter) */
+.navWcLead {
+  white-space: pre;
+}
+@media (max-width: 1024px) {
+  .navWcLead {
+    display: none;
+  }
+}

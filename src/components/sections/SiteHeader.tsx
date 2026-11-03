@@ -203,7 +203,9 @@ export default function SiteHeader() {
                     <div key={item.label} className={cn(styles.navItem, styles.navItemWc)}>
                       <a href={item.href}>
                         <span className={styles.navDot} aria-hidden="true" />
-                        {item.label}
+                        {/* "Summer Cup" is longer than the original's label; drop the first word on tablets so the bar fits */}
+                        <span className={styles.navWcLead}>{item.label.split(" ")[0]} </span>
+                        {item.label.split(" ").slice(1).join(" ")}
                       </a>
                     </div>
                   );

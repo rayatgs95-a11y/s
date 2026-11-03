@@ -1,0 +1,435 @@
+/* Section 13 — Newsletter signup (translated from section-13-newsletter.css) */
+.root {
+  --tnk-red: #e31e24;
+  --tnk-black: #0e0e10;
+  --tnk-mute: #888;
+  --tnk-line: rgba(255, 255, 255, 0.14);
+  --tnk-line-soft: rgba(255, 255, 255, 0.08);
+  --tnk-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  background: var(--tnk-black);
+  color: #fff;
+  padding: 56px 32px;
+  font-family: var(--font-sans);
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 14px;
+}
+.eyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tnk-red);
+}
+
+.title {
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0 0 12px;
+  color: #fff;
+}
+.title em {
+  font-style: normal;
+  background: #fff;
+  color: var(--tnk-black);
+  padding: 0 10px;
+  border-radius: 3px;
+  display: inline-block;
+  line-height: 1;
+  margin: 0 2px;
+}
+
+.sub {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0;
+  max-width: 460px;
+}
+
+.formWrap {
+  width: 100%;
+}
+.form {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+  background: #fff;
+  border: 1.5px solid #fff;
+  color: var(--tnk-black);
+  padding: 15px 18px;
+  font-size: 14px;
+  font-family: inherit;
+  border-radius: 4px;
+  outline: none;
+  min-width: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.input::placeholder {
+  color: rgba(14, 14, 16, 0.4);
+}
+.input:focus {
+  border-color: var(--tnk-red);
+  box-shadow: 0 0 0 3px rgba(227, 30, 36, 0.25);
+}
+.input.isInvalid {
+  border-color: var(--tnk-red);
+  box-shadow: 0 0 0 3px rgba(227, 30, 36, 0.35);
+}
+
+.button {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid #fff;
+  padding: 15px 24px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: background-color 0.2s var(--tnk-ease), color 0.2s var(--tnk-ease), gap 0.2s var(--tnk-ease);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.button svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s var(--tnk-ease);
+}
+.button:hover {
+  background: #fff;
+  color: var(--tnk-black);
+  gap: 12px;
+}
+.button:hover svg {
+  transform: translateX(2px);
+}
+.button:active {
+  transform: scale(0.98);
+}
+.button:focus-visible {
+  outline: 3px solid var(--tnk-red);
+  outline-offset: 2px;
+}
+.button:disabled {
+  cursor: default;
+}
+.sending {
+  opacity: 0.6;
+}
+
+.trust {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 12px 0 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.trustItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.trustItem::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--tnk-red)
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>")
+    center/9px no-repeat;
+  flex-shrink: 0;
+}
+
+.error {
+  font-size: 12px;
+  color: var(--tnk-red);
+  margin: 10px 0 0;
+  display: none;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+}
+.error.isVisible {
+  display: block;
+}
+
+.disclaimer {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--tnk-mute);
+  margin: 10px 0 0;
+  line-height: 1.5;
+}
+.disclaimer a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+/* Success / coupon card (both source rule-sets merged in cascade order) */
+.success {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 18px 18px 16px;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: var(--tnk-black, #0e0e10);
+  text-align: left;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  font-size: 14px;
+  font-weight: 700;
+}
+.success.isVisible {
+  display: block;
+  animation: fadeIn 0.35s ease-out;
+}
+.success svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  stroke: var(--tnk-red);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formWrap.isSuccess .form,
+.formWrap.isSuccess .disclaimer,
+.formWrap.isSuccess .trust,
+.formWrap.isSuccess .error {
+  display: none;
+}
+
+.successTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.successIcon {
+  width: 22px;
+  height: 22px;
+  color: #16a34a;
+  flex-shrink: 0;
+}
+.successTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--tnk-black, #0e0e10);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.successSub {
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.coupon {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  padding: 4px;
+  background: #f5f1ea;
+  border: 1.5px dashed #d0021b;
+  border-radius: 8px;
+}
+.couponCode {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 14px;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #d0021b;
+  text-transform: uppercase;
+  background: transparent;
+  user-select: all;
+  -webkit-user-select: all;
+  word-break: break-all;
+}
+.couponCopy {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: #d0021b;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.couponCopy:hover {
+  background: #b30119;
+  transform: translateY(-1px);
+}
+.couponCopy:active {
+  transform: translateY(0);
+}
+.success .couponCopy svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  stroke: currentColor;
+}
+.couponCopy.isCopied {
+  background: #16a34a;
+  pointer-events: none;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .root {
+    padding: 48px 24px;
+  }
+  .inner {
+    gap: 36px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .root {
+    padding: 40px 20px;
+  }
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .form {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+  .trust {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .success {
+    padding: 16px 14px 14px;
+    border-radius: 8px;
+  }
+  .successTop {
+    gap: 8px;
+  }
+  .successIcon {
+    width: 20px;
+    height: 20px;
+  }
+  .successTitle {
+    font-size: 15px;
+  }
+  .successSub {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .coupon {
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px;
+  }
+  .couponCode {
+    padding: 14px 10px;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    background: #fff;
+    border-radius: 5px;
+  }
+  .couponCopy {
+    padding: 14px;
+    justify-content: center;
+    font-size: 14px;
+    width: 100%;
+  }
+  .success .couponCopy svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .couponCode {
+    font-size: 16px;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .button,
+  .button svg {
+    transition: none;
+  }
+}

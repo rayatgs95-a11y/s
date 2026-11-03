@@ -1,0 +1,429 @@
+/**
+ * Retro Kit + Mystery Box diagonal split.
+ * Values mirror section-11-retro-mystery.css. The source paints its photo
+ * on ::before; here the stand-in art lives in a `.bg` layer with the same
+ * stacking (z 0), hover zoom and fallback gradients.
+ */
+.section {
+  --rm-red: #e31e24;
+  --rm-red-light: #ff5566;
+  --rm-amber: #f5b450;
+  --rm-amber-light: #ffc77a;
+  --rm-black: #0d0d0d;
+  --rm-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  position: relative;
+  width: 100%;
+  background: var(--rm-black);
+  overflow: hidden;
+  isolation: isolate;
+  font-family: var(--font-sans);
+}
+.section *,
+.section *::before,
+.section *::after {
+  box-sizing: border-box;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 580px;
+  position: relative;
+}
+
+.panel {
+  position: relative;
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 580px;
+  color: #fff;
+}
+
+/* Background art layer (source: .panel::before) */
+.bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  overflow: hidden;
+  transition: transform 0.8s var(--rm-ease);
+}
+.panel:hover .bg {
+  transform: scale(1.04);
+}
+
+/* Darkening overlay */
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.panelInner {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+  width: 100%;
+}
+
+/* RETRO PANEL — clipped right, content anchored left */
+.retro {
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+  padding-right: 110px;
+}
+.retro .bg {
+  background-color: #2a1a0a;
+  background-image:
+    repeating-linear-gradient(135deg, rgba(245, 180, 80, 0.06) 0 2px, transparent 2px 16px),
+    linear-gradient(135deg, #3a2410 0%, #1c0e04 60%, #0d0500 100%);
+}
+
+/* MYSTERY PANEL — clipped left, content anchored right */
+.mystery {
+  clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+  padding-left: 110px;
+  align-items: flex-end;
+  text-align: right;
+}
+.mystery .bg {
+  background-color: #1a0808;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(227, 30, 36, 0.08) 0 2px, transparent 2px 16px),
+    linear-gradient(135deg, #3a0a10 0%, #1a0408 60%, #0a0204 100%);
+}
+.mystery::after {
+  background: linear-gradient(180deg, rgba(40, 5, 8, 0.55) 0%, rgba(20, 0, 2, 0.78) 100%);
+}
+
+/* ---- Retro stand-in art: a wall of framed shirts ---- */
+.wall {
+  position: absolute;
+  top: -6%;
+  left: -8%;
+  width: 116%;
+  height: 112%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 6px;
+  padding: 6px;
+  background: #b9b9b6;
+  transform: perspective(1400px) rotateY(-6deg) rotate(-1.5deg);
+  transform-origin: 30% 50%;
+}
+.frame {
+  position: relative;
+  background: linear-gradient(180deg, #3c3c3c 0%, #2b2b2b 100%);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.frameShirt {
+  width: 88%;
+  height: auto;
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.45));
+}
+.frameNum {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+.frameNumDark {
+  color: rgba(20, 20, 20, 0.82);
+  text-shadow: none;
+}
+
+/* ---- Mystery stand-in art: sealed box with warm glow ---- */
+.glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(40% 30% at 42% 52%, rgba(255, 150, 70, 0.32) 0%, transparent 70%),
+    radial-gradient(30% 45% at 58% 18%, rgba(255, 255, 255, 0.07) 0%, transparent 70%);
+  mix-blend-mode: screen;
+}
+.box {
+  position: absolute;
+  left: 8%;
+  top: 22%;
+  width: 70%;
+  height: auto;
+  opacity: 0.85;
+}
+
+/* Tag pill */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  line-height: 15px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  padding: 7px 14px;
+  border-radius: 99px;
+}
+.tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.retro .tag {
+  background: rgba(245, 180, 80, 0.14);
+  color: var(--rm-amber);
+  border: 1px solid rgba(245, 180, 80, 0.4);
+}
+.mystery .tag {
+  background: rgba(227, 30, 36, 0.18);
+  color: #ff8a92;
+  border: 1px solid rgba(227, 30, 36, 0.45);
+}
+
+.title {
+  font-size: clamp(36px, 4.4vw, 56px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+}
+.title em {
+  font-style: normal;
+  display: block;
+}
+.retro .title em {
+  color: var(--rm-amber);
+}
+.mystery .title em {
+  color: var(--rm-red-light);
+}
+
+.copy {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 32px;
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 32px;
+  margin: 0 0 36px;
+  padding: 22px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.mystery .stats {
+  justify-content: flex-end;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+.statNum {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.statLbl {
+  font-size: 9px;
+  line-height: 14px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 8px;
+}
+
+/* CTA underlined arrow */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  padding: 12px 0 8px;
+  border-bottom: 2px solid currentColor;
+  align-self: flex-start;
+  transition:
+    gap 0.25s var(--rm-ease),
+    color 0.25s var(--rm-ease);
+}
+.retro .cta {
+  color: var(--rm-amber);
+}
+.mystery .cta {
+  color: #ff8a92;
+  align-self: flex-end;
+}
+.cta:hover {
+  gap: 18px;
+}
+.retro .cta:hover {
+  color: var(--rm-amber-light);
+}
+.mystery .cta:hover {
+  color: #fff;
+}
+.cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.25s var(--rm-ease);
+}
+.cta:hover svg {
+  transform: translateX(4px);
+}
+.cta .ctaExternal {
+  width: 12px;
+  height: 12px;
+  margin-left: -2px;
+  opacity: 0.7;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .panel {
+    padding: 56px 40px;
+    min-height: 520px;
+  }
+  .retro {
+    padding-right: 84px;
+  }
+  .mystery {
+    padding-left: 84px;
+  }
+  .title {
+    font-size: 38px;
+  }
+  .copy {
+    font-size: 14px;
+  }
+  .stats {
+    gap: 22px;
+  }
+}
+
+/* Mobile — stack, drop diagonal */
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .panel {
+    padding: 56px 24px;
+    min-height: 460px;
+    clip-path: none !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  .retro,
+  .mystery {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .mystery .stats {
+    justify-content: flex-start;
+  }
+  .mystery .cta {
+    align-self: flex-start !important;
+  }
+  .mystery {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .title {
+    font-size: 32px;
+  }
+  .copy {
+    font-size: 14px;
+  }
+  .stats {
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .statNum {
+    font-size: 22px;
+  }
+  .panel:hover .bg {
+    transform: none;
+  }
+  .wall {
+    grid-template-columns: repeat(5, 1fr);
+    transform: rotate(-1deg);
+  }
+  .frameNum {
+    font-size: 26px;
+  }
+  .box {
+    left: 12%;
+    top: 30%;
+    width: 80%;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 420px) {
+  .panel {
+    padding: 48px 18px;
+    min-height: 400px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .copy {
+    font-size: 13px;
+  }
+  .stats {
+    gap: 16px;
+    padding-top: 16px;
+    margin-bottom: 26px;
+  }
+  .statNum {
+    font-size: 19px;
+  }
+  .cta {
+    font-size: 11px;
+    gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg,
+  .cta,
+  .cta svg {
+    transition: none;
+  }
+  .panel:hover .bg {
+    transform: none;
+  }
+}

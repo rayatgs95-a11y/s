@@ -1,0 +1,264 @@
+/* Section 9 — Women's + Kids' two-panel (translated from section-09-women-kids.css) */
+.section {
+  --tnk-red: #e31e24;
+  --tnk-black: #131313;
+  --tnk-ink: #1a1a1a;
+  --tnk-muted: #737373;
+  --tnk-line: #ededed;
+  --tnk-white: #ffffff;
+  --tnk-radius: 6px;
+  --tnk-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  font-family: var(--font-sans);
+  background: #fff;
+  color: var(--tnk-black);
+  padding: 96px 24px 96px;
+  -webkit-font-smoothing: antialiased;
+}
+.section *,
+.section *::before,
+.section *::after {
+  box-sizing: border-box;
+}
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--tnk-radius);
+  background-color: var(--tnk-ink);
+  text-decoration: none !important;
+  color: #fff;
+  isolation: isolate;
+  cursor: pointer;
+  aspect-ratio: 5 / 6;
+}
+/* Image layer (replaces ::before background-image; holds PhotoArt) */
+.media {
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-desktop);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.7s var(--tnk-ease);
+  z-index: 0;
+}
+.tile:hover .media {
+  transform: scale(1.04);
+}
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.4) 35%,
+    rgba(0, 0, 0, 0.1) 65%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Per-tile gradient placeholders (shown under the art) */
+.women {
+  --bg-desktop: linear-gradient(135deg, #c2185b 0%, #4a0e2e 100%);
+}
+.kids {
+  --bg-desktop: linear-gradient(135deg, #006fc9 0%, #003a6b 100%);
+}
+
+.body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 36px 40px;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.text {
+  min-width: 0;
+  max-width: 360px;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 14px;
+}
+.kickerDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tnk-red);
+}
+.title {
+  font-size: clamp(32px, 3.6vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 12px;
+  color: #fff;
+}
+.sub {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 26px;
+  background: #fff;
+  color: var(--tnk-black);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background-color 0.25s var(--tnk-ease),
+    color 0.25s var(--tnk-ease),
+    gap 0.25s var(--tnk-ease),
+    transform 0.25s var(--tnk-ease);
+}
+.cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.25s var(--tnk-ease);
+}
+.tile:hover .cta {
+  background: var(--tnk-black);
+  color: #fff;
+  gap: 14px;
+  transform: translateY(-2px);
+}
+.tile:hover .cta svg {
+  transform: translateX(3px);
+}
+.tile:focus-visible {
+  outline: 3px solid var(--tnk-red);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 72px 20px 80px;
+  }
+  .grid {
+    gap: 12px;
+  }
+  .body {
+    padding: 28px;
+  }
+  .title {
+    font-size: clamp(26px, 3.2vw, 36px);
+  }
+  .sub {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 56px 0 64px;
+  }
+  .inner {
+    max-width: 100%;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .tile {
+    aspect-ratio: auto;
+    height: 520px;
+    border-radius: 0;
+  }
+  .media {
+    background-image: var(--bg-mobile, var(--bg-desktop));
+  }
+  .tile::after {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.5) 35%,
+      rgba(0, 0, 0, 0.12) 65%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  .body {
+    padding: 28px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+  .text {
+    max-width: 100%;
+  }
+  .title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .sub {
+    font-size: 13px;
+  }
+  .cta {
+    padding: 13px 22px;
+    font-size: 11px;
+  }
+
+  /* Mirror modifier — flips text alignment to right on mobile */
+  .mirrorMobile .body {
+    align-items: flex-end;
+  }
+  .mirrorMobile .text {
+    text-align: right;
+  }
+  .mirrorMobile .kicker {
+    flex-direction: row-reverse;
+  }
+
+  .tile:hover .media {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media,
+  .cta,
+  .cta svg {
+    transition: none;
+  }
+  .tile:hover .media {
+    transform: none;
+  }
+}

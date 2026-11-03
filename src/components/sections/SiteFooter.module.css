@@ -1,0 +1,418 @@
+/* Section 14 — Footer (translated from section-14-footer.css) */
+.root {
+  --tnk-red: #e31e24;
+  --tnk-bg: #0e0e10;
+  --tnk-surface: #18181b;
+  --tnk-line: rgba(255, 255, 255, 0.08);
+  --tnk-line-hi: rgba(255, 255, 255, 0.15);
+  --tnk-text: rgba(255, 255, 255, 0.6);
+  --tnk-text-hi: rgba(255, 255, 255, 0.88);
+  --tnk-text-faint: rgba(255, 255, 255, 0.35);
+  --tnk-white: #ffffff;
+  --tnk-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  background: var(--tnk-bg);
+  color: var(--tnk-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* 1. CONTACT BANNER */
+.contact {
+  background: var(--tnk-surface);
+  border-bottom: 1px solid var(--tnk-line);
+}
+.contactRow {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.contactLeft {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+.contactIcon {
+  width: 46px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contactIcon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--tnk-white);
+}
+.contactText {
+  line-height: 1.3;
+}
+.contactH {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--tnk-white);
+  margin: 0 0 3px;
+  letter-spacing: -0.01em;
+}
+.contactSub {
+  font-size: 12px;
+  color: var(--tnk-text);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+.contactCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: var(--tnk-white);
+  color: var(--tnk-bg);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  text-decoration: none !important;
+  transition: background-color 0.2s var(--tnk-ease), color 0.2s var(--tnk-ease), gap 0.2s var(--tnk-ease),
+    transform 0.2s var(--tnk-ease);
+  flex-shrink: 0;
+}
+.contactCta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s var(--tnk-ease);
+}
+.contactCta:hover {
+  background: var(--tnk-red);
+  color: var(--tnk-white);
+  gap: 12px;
+  transform: translateY(-1px);
+}
+.contactCta:hover svg {
+  transform: translateX(2px);
+}
+
+/* 2. MAIN FOOTER */
+.main {
+  padding: 64px 0 48px;
+}
+.cols {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+/* Brand */
+.brandLogo {
+  display: inline-block;
+  margin: 0 0 18px;
+  text-decoration: none !important;
+  line-height: 1;
+  color: var(--tnk-white);
+}
+.brandLogo svg {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+.brand p {
+  font-size: 13px;
+  color: var(--tnk-text);
+  line-height: 1.65;
+  margin: 0 0 22px;
+  max-width: 280px;
+}
+
+/* Currency dropdown (both source rule-sets merged in cascade order) */
+.currencyWrapper {
+  position: relative;
+  display: inline-block;
+}
+.currency {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.currency:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+.currencyArrow {
+  font-size: 10px;
+  color: var(--tnk-text);
+  margin-left: 4px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+.currency[aria-expanded="true"] .currencyArrow {
+  transform: rotate(180deg);
+}
+
+.currencyList {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  max-height: 360px;
+  overflow-y: auto;
+  width: 260px;
+  z-index: 9999;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+.currencyList[hidden] {
+  display: none;
+}
+.currencyList li {
+  margin: 0;
+  padding: 0;
+}
+.currencyItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  transition: background 0.12s ease;
+}
+.currencyItem:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+.currencyItem.isActive {
+  background: rgba(208, 2, 27, 0.18);
+  color: #fff;
+  font-weight: 600;
+}
+.currencyItemFlag {
+  font-size: 18px;
+  line-height: 1;
+}
+.currencyItemCode {
+  font-weight: 700;
+  min-width: 38px;
+  letter-spacing: 0.02em;
+}
+.currencyItemName {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 12px;
+  flex: 1;
+}
+.currencyItemCheck {
+  color: #d0021b;
+  font-weight: 700;
+}
+
+/* Link columns */
+.colH {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tnk-white);
+  margin: 0 0 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.colH::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--tnk-red);
+}
+.colList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.colList li {
+  margin-bottom: 10px;
+}
+.colList a {
+  font-size: 13px;
+  color: var(--tnk-text);
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+.colList a:hover {
+  color: var(--tnk-white);
+}
+
+/* 3. LEGAL STRIP */
+.legal {
+  padding: 24px 0;
+  border-top: 1px solid var(--tnk-line);
+}
+.legalRow {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.copy {
+  font-size: 11px;
+  color: var(--tnk-text-faint);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  margin: 0;
+}
+.legalLinks {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.legalLinks a {
+  font-size: 11px;
+  color: var(--tnk-text);
+  text-decoration: none !important;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+.legalLinks a:hover {
+  color: var(--tnk-white);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .cols {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 32px 24px;
+  }
+  .brand {
+    grid-column: 1 / -1;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--tnk-line);
+  }
+  .brand p {
+    max-width: 480px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .inner {
+    padding: 0 20px;
+  }
+  .contactRow {
+    padding: 22px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .contactCta {
+    width: 100%;
+    justify-content: center;
+  }
+  .main {
+    padding: 44px 0 36px;
+  }
+  .cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+  }
+  .brand {
+    grid-column: 1 / -1;
+    padding-bottom: 12px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--tnk-line);
+  }
+  .brand p {
+    font-size: 13px;
+    max-width: none;
+  }
+  .colH {
+    font-size: 10px;
+    margin-bottom: 12px;
+  }
+  .colList a {
+    font-size: 13px;
+  }
+  .legalRow {
+    padding: 0 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+}
+
+/* Mobile: anchor currency list right + cap height */
+@media (max-width: 640px) {
+  .currencyList {
+    width: 240px;
+    left: auto;
+    right: 0;
+    max-height: 320px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 420px) {
+  .inner {
+    padding: 0 16px;
+  }
+  .contactRow {
+    padding: 18px 16px;
+  }
+  .main {
+    padding: 32px 0 28px;
+  }
+  .cols {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .legalRow {
+    padding: 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root *,
+  .root *::before,
+  .root *::after {
+    transition: none !important;
+  }
+}

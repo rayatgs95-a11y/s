@@ -1,0 +1,398 @@
+/**
+ * Personalisation / print shop — dark editorial section with rotating
+ * shirt-back panel. Values mirror section-10-print-shop.css.
+ */
+.section {
+  --ps-red: #e31e24;
+  --ps-black: #131313;
+  --ps-bg: #0e0e10;
+  --ps-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  font-family: var(--font-sans);
+  background: var(--ps-bg);
+  color: #fff;
+  padding: 112px 24px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow: hidden;
+}
+.section *,
+.section *::before,
+.section *::after {
+  box-sizing: border-box;
+}
+
+/* faint cutting-mat grid */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* COPY COLUMN */
+.copy {
+  max-width: 480px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 16px;
+}
+.eyebrowDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ps-red);
+}
+.title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  margin: 0 0 20px;
+  color: #fff;
+}
+.title em {
+  font-style: normal;
+  color: var(--ps-red);
+}
+.sub {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0 0 32px;
+  max-width: 420px;
+}
+
+/* Feature list */
+.features {
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+.featureTick {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ps-red);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.featureTick svg {
+  width: 10px;
+  height: 10px;
+}
+.feature strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* CTA row */
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: #fff;
+  color: var(--ps-black);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  text-decoration: none !important;
+  transition:
+    gap 0.25s var(--ps-ease),
+    transform 0.25s var(--ps-ease),
+    box-shadow 0.25s var(--ps-ease);
+}
+.cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.25s var(--ps-ease);
+}
+.cta:hover {
+  gap: 14px;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+}
+.cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* Progress dots */
+.dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 28px;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transition:
+    background-color 0.3s var(--ps-ease),
+    width 0.3s var(--ps-ease);
+}
+.dotOn {
+  background: var(--ps-red);
+  width: 22px;
+  border-radius: 99px;
+}
+
+/* ==========================================================================
+   SHIRT-BACK PANEL — cream card with arched name + huge number
+   ========================================================================== */
+.jerseyWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.jersey {
+  background: linear-gradient(180deg, #f5f1ea 0%, #ebe4d8 100%);
+  border-radius: 10px;
+  padding: 36px 30px 30px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+/* subtle weave texture */
+.jersey::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0, transparent 2px, rgba(0, 0, 0, 0.025) 2px, rgba(0, 0, 0, 0.025) 3px),
+    repeating-linear-gradient(-45deg, transparent 0, transparent 2px, rgba(0, 0, 0, 0.025) 2px, rgba(0, 0, 0, 0.025) 3px);
+  border-radius: 10px;
+  pointer-events: none;
+}
+/* collar notch at the top */
+.jersey::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 18px;
+  background: var(--ps-bg);
+  border-radius: 0 0 40px 40px;
+}
+.jerseyInner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Arched name (SVG textPath) */
+.arcName {
+  width: 100%;
+  height: 64px;
+  margin-bottom: -4px;
+  transition: opacity 0.3s ease;
+}
+.arcName svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.arcText {
+  font-family: var(--font-display);
+  font-size: 46px;
+  letter-spacing: 4px;
+  fill: #1a1a1d;
+}
+
+/* Huge shirt number */
+.num {
+  font-family: var(--font-display);
+  font-size: 200px;
+  color: #1a1a1d;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  margin: 0;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
+  transition: opacity 0.3s ease;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Country line at bottom */
+.bottom {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.flag {
+  width: 28px;
+  height: 20px;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease;
+}
+.flag svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.country {
+  font-size: 11px;
+  line-height: 17px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #1a1a1d;
+  transition: opacity 0.3s ease;
+}
+
+/* Fade state during data swap */
+.fade {
+  opacity: 0 !important;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .section {
+    padding: 88px 24px;
+  }
+  .grid {
+    gap: 56px;
+  }
+  .num {
+    font-size: 170px;
+  }
+}
+
+/* Mobile — stack, shirt FIRST */
+@media (max-width: 720px) {
+  .section {
+    padding: 72px 16px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .copy {
+    max-width: 100%;
+    order: 2;
+  }
+  .jerseyWrap {
+    order: 1;
+  }
+  .title {
+    font-size: clamp(32px, 8vw, 44px);
+  }
+  .sub {
+    font-size: 14px;
+    max-width: none;
+  }
+  .cta {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+  .ctaRow {
+    width: 100%;
+  }
+  .num {
+    font-size: 150px;
+  }
+  .arcName {
+    height: 54px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 420px) {
+  .section {
+    padding: 56px 14px;
+  }
+  .jersey {
+    padding: 28px 22px 22px;
+    border-radius: 8px;
+  }
+  .jersey::after {
+    width: 64px;
+    height: 14px;
+  }
+  .num {
+    font-size: 124px;
+  }
+  .arcName {
+    height: 48px;
+  }
+  .flag {
+    width: 24px;
+    height: 17px;
+  }
+  .country {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcName,
+  .num,
+  .flag,
+  .country,
+  .dot {
+    transition: none !important;
+  }
+}

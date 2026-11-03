@@ -1,0 +1,152 @@
+/* Section 1 — Announcement bar (translated from section-01-announcement.css) */
+
+.bar {
+  --tnk-red: #e31e24;
+  --tnk-black: #131313;
+  --tnk-white: #ffffff;
+
+  background: var(--tnk-black);
+  color: var(--tnk-white);
+  height: 36px;
+  position: relative;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  z-index: 110;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bar *,
+.bar *::before,
+.bar *::after {
+  box-sizing: border-box;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 16px;
+}
+
+.stage {
+  position: relative;
+  flex: 1 1 auto;
+  height: 36px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.msg {
+  position: absolute;
+  inset: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--tnk-white);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.msg.isActive {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.msg strong {
+  font-weight: 700;
+  color: var(--tnk-white);
+}
+
+/* Red emphasis span (inline-styled in the source markup) */
+.hot {
+  color: #ff4d52;
+  font-weight: 700;
+}
+
+.sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--tnk-red);
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.cta {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tnk-white) !important;
+  text-decoration: none !important;
+  padding: 4px 0;
+  border-bottom: 1.5px solid var(--tnk-red);
+  transition: color 0.2s ease, gap 0.2s ease;
+  white-space: nowrap;
+}
+
+.cta:hover,
+.cta:focus {
+  color: var(--tnk-red) !important;
+  gap: 10px;
+}
+
+.ctaArrow {
+  font-size: 13px;
+  transition: transform 0.2s ease;
+}
+
+@media (max-width: 720px) {
+  .bar {
+    height: 34px;
+  }
+  .inner {
+    padding: 0 14px;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+  }
+  .msg {
+    height: 34px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    gap: 8px;
+  }
+  .cta {
+    font-size: 10px;
+    padding: 3px 0;
+  }
+  .ctaArrow {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .msg {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none !important;
+  }
+}

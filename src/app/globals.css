@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Design tokens extracted from the target site */
+  --tnk-red: #e31e24;
+  --tnk-red-dark: #c4161c;
+  --tnk-black: #131313;
+  --tnk-ink: #0e0e10;
+  --tnk-ink-2: #0d0d0d;
+  --tnk-white: #ffffff;
+  --tnk-grey-50: #f6f7f8;
+  --tnk-grey-100: #f2f2f2;
+  --tnk-grey-300: #d9d9d9;
+  --tnk-grey-500: #8a8a8a;
+  --tnk-grey-700: #404040;
+  --tnk-gold: #f5b942;
+
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: var(--font-bebas), var(--font-inter), sans-serif;
+  --font-hanken-stack: var(--font-hanken), -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --font-manrope-stack: var(--font-manrope), var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-tnk-red: var(--tnk-red);
+  --color-tnk-black: var(--tnk-black);
+  --color-tnk-ink: var(--tnk-ink);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-
+html {
+  -webkit-text-size-adjust: 100%;
+}
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: #131313;
+  background: #ffffff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+}
+
+/* Hidden scrollbars for horizontal carousels */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
